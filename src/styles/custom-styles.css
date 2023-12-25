@@ -1,0 +1,30 @@
+.pushElementDown {
+    margin-top: 10vh !important;
+}
+
+.custom-card-img-top {
+    width: 100% !important;
+    height: 25vw !important;
+    object-fit: cover !important;
+}
+
+/*
+    superCustomAnimationClass and customBackgroundAnimation keyframe is just to test
+    how my React <CustomCard> component handless super custom content like this inside 'projectDescriptionLong'
+*/
+.superCustomAnimationClass{
+    animation: customBackgroundAnimation 5s infinite;
+    border: 3px solid black;
+}
+
+@keyframes customBackgroundAnimation {
+    0% {
+        background-color: #00ff00;
+    }
+    50% {
+        background-color: #0000ff;
+    }
+    100% {
+        background-color: #00ff00;
+    }
+}
