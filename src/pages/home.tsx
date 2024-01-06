@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import CustomCard from "../components/cardComponent";
+import CustomProfileInfo from "../components/profileItemComponent";
 
 import "../styles/custom-styles.css";
 
@@ -20,7 +21,173 @@ interface Project {
     colValue : string;
 };
 
+// ProfileItem interface
+interface ProfileItem {
+    id : string;
+    title : string;
+    content : ReactElement;
+};
+
 const HomePage = () => {
+    /*  object structure to profileItems[]
+        {
+            "id" : "education",
+            "title" : "Education",
+            "content" : (
+                <>
+                <span>
+                    Super
+                    <br/>
+                    long
+                    <br/>
+                    text...
+                </span>
+                </>
+            ),
+        },
+    */
+
+    // Array of profileItems
+    const profileItems : Array<ProfileItem> = [
+        {
+            "id" : "whoIam",
+            "title" : "Kuka olen",
+            "content" : (
+                <>
+                <div className="row">
+                    <div className="col-sm-4 bg-dark text-white p-4 text-center">
+                        <p style={{fontSize: 30,}}>
+                            Minä olen
+                            <br/>
+                            Petteri Mikkonen
+                            <br/>
+                            Junior
+                            <br/>
+                            full stack
+                            <br/>
+                            Web Developer.
+                        </p>
+                    </div>
+                    <div className="col-sm-4 bg-dark text-white p-4">
+                        <p className="text-center" style={{fontSize: 20,}}>
+                            Harrastukset
+                        </p>
+                        <hr/>
+                        <p style={{fontSize: 16,}}>
+                            Harrastuksiini kuuluu rullalautailu, frisbeegolf ja videopelit.
+                        </p>
+                    </div>
+                    <div className="col-sm-4 bg-dark text-white p-4">
+                        <p className="text-center" style={{fontSize: 20,}}>
+                            Mielenkiinnonkohteet
+                        </p>
+                        <hr/>
+                        <p style={{fontSize: 16,}}>
+                            Minusta on mielekästä tutkia tietotekniikkaan ja harrastuksiini liittyviä asioita.
+                        </p>
+                    </div>
+                    <div className="col-sm-12 bg-dark text-white p-4 text-center">
+                        <hr/>
+                        <p style={{fontSize: 16,}}>
+                            Ota yhteyttä
+                        </p>
+                        <p>linkedIn</p>
+                    </div>
+                </div>
+                </>
+            ),
+        },
+        {
+            "id" : "education",
+            "title" : "Opinnot",
+            "content" : (
+                <>
+                {/*
+                <span>
+                    Super
+                    <br/>
+                    long
+                    <br/>
+                    text... Opinnot
+                </span>
+                */}
+                </>
+            ),
+        },
+        {
+            "id" : "skills",
+            "title" : "Taidot",
+            "content" : (
+                <>
+                {/*
+                <span>
+                    Super
+                    <br/>
+                    long
+                    <br/>
+                    text... Taidot
+                </span>
+                */}
+                </>
+            ),
+        },
+        {
+            "id" : "workExperience",
+            "title" : "Työkokemus",
+            "content" : (
+                <>
+                {/*
+                <span>
+                    Super
+                    <br/>
+                    long
+                    <br/>
+                    text... Työkokemus
+                </span>
+                */}
+                </>
+            ),
+        },
+    ];
+
+    const displayProfileItems = (arr : Array<ProfileItem>) => {
+        let profileItems = arr; // params
+        let result : Array<ReactElement> = []; // return value
+
+        let profileItem_id : string = "";
+        let profileItem_title : string = "";
+        let profileItem_content : ReactElement;
+
+        let htmlString;
+
+        for(let i = 0; i < profileItems.length; i++){
+            /*
+            console.log(`profileItems[${profileItems[i]}]: ${i}`);
+            console.log(`profileItems[${i}].id: ${profileItems[i].id}`);
+            console.log(`profileItems[${i}].title: ${profileItems[i].title}`);
+            console.log(`profileItems[${i}].content: ${profileItems[i].content}`);
+            */
+            profileItem_id = profileItems[i].id;
+            profileItem_title = profileItems[i].title;
+            profileItem_content = profileItems[i].content;
+
+            htmlString = (
+                <div className="row" key={profileItem_id}>
+                    <div className="col-sm-12">
+                        <CustomProfileInfo
+                            title={profileItem_title}
+                            content={profileItem_content}
+                        />
+                    </div>
+                </div>
+            );
+
+            result.push(htmlString);
+        };
+
+        return [result];
+    };
+
     /*  object structure to projects[]
         {
             "id" : 0,
@@ -29,6 +196,7 @@ const HomePage = () => {
             "projectName" : "Project name.",
             "projectDescriptionShort" : "Short text.",
             "projectDescriptionLong" : (
+                <>
                 <span>
                     Super
                     <br/>
@@ -36,6 +204,7 @@ const HomePage = () => {
                     <br/>
                     text...
                 </span>
+                </>
             ),
             "projectModalName" : "#(projectName in one string)",
             "projectModalLabel" : "same as projectModalName",
@@ -56,8 +225,9 @@ const HomePage = () => {
             "projectDescriptionLong" : (
                 <>
                 <span>
-                    Tämä sivu on toteutettu ReactJS:llä
+                    Tämä sivu on toteutettu ReactJS:llä käyttäen Typescriptiä.
                     <br/>
+                    Tässä hieman testiä...
                     <hr/>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eleifend posuere massa in gravida. Integer mattis leo enim, eget volutpat tellus consequat vitae. Nullam porta ipsum ac pharetra feugiat. Donec quis maximus ipsum, in finibus sapien. Pellentesque imperdiet sed neque vel ornare. Mauris porttitor non libero in sollicitudin. Praesent vitae diam consectetur, finibus mauris ac, convallis magna. Nunc malesuada enim et magna mattis tempus. Nullam pretium magna in tortor cursus, ac ornare metus porta. Nulla facilisi. Ut ac mi finibus, rhoncus tellus et, auctor lacus. Integer mollis porta arcu sed venenatis. Duis condimentum et nunc vitae lacinia.
                     <br/>
@@ -81,8 +251,8 @@ const HomePage = () => {
                     <br/>
                     test
                     <br/>
-                    <h1>DATA 5</h1>
-                    <img src={img_URL} alt="harmaa kissa"/>
+                    <h1>DATA</h1>
+                    <img src={img_URL} alt="kissa"/>
                     <br/>
                     <span style={{color: "red", border: 1, borderStyle: "solid", borderColor: "#0000ff"}}>
                         <b className="superCustomAnimationClass" style={{backgroundColor: "#00ff00", fontSize: 50,}}>S</b>uper custom <i style={{color: "#000000", fontSize: 30}}>styled</i> element asdasdasd....
@@ -95,7 +265,7 @@ const HomePage = () => {
                     <label className="form-check-label" htmlFor="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
                 </div>
                 <div className="row text-center">
-                    <p>This project is awesome... <b>AND</b> <span className="text-danger">ReactJS</span> is so <u><span style={{color: "green"}}>powerfull</span></u></p>
+                    <p>This project is awesome... <b>AND</b> <span className="text-danger">ReactJS</span> is so <u><span style={{color: "green"}}>powerful</span></u></p>
                 </div>
                 <div className="row">
                     <div style={{margin: "auto"}} className="col-sm-8">
@@ -108,14 +278,14 @@ const HomePage = () => {
             "projectModalLabel" : "portfolio",
             "projectGitHubRepository" : "https://github.com/driftaaja/portfolio/tree/main",
             "projectLink" : "https://driftaaja.github.io/portfolio/",
-            "colValue" : "col-sm-4",
+            "colValue" : "col-sm-6",
         },
         {
             "id" : 1,
             "imgSource" : img_URL,
             "imgDescription" : "EseduLAN 2023 - website",
             "projectName" : "EseduLAN 2023 - website",
-            "projectDescriptionShort" : "MERN stack sovellus.",
+            "projectDescriptionShort" : "EseduLAN 2023 -website on MERN stack sovellus.",
             "projectDescriptionLong" : (
                 <span>
                     Toteutin Digimuuntamo 3.0 työvoimakoulutuksessa EseduLAN 2023 tapahtuman nettisivujen porttaus projektia pienryhmässä.
@@ -127,7 +297,7 @@ const HomePage = () => {
             "projectModalLabel" : "EseduLAN",
             "projectGitHubRepository" : "",
             "projectLink" : "https://esedu-lan.onrender.com/",
-            "colValue" : "col-sm-8",
+            "colValue" : "col-sm-6",
         },
         {
             "id" : 2,
@@ -273,7 +443,7 @@ const HomePage = () => {
                     <label className="form-check-label" htmlFor="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
                 </div>
                 <div className="row text-center">
-                    <p>This project is awesome... <b>AND</b> <span className="text-danger">ReactJS</span> is so <u><span style={{color: "green"}}>powerfull</span></u></p>
+                    <p>This project is awesome... <b>AND</b> <span className="text-danger">ReactJS</span> is so <u><span style={{color: "green"}}>powerful</span></u></p>
                 </div>
                 <div className="row">
                     <div style={{margin: "auto"}} className="col-sm-8">
@@ -358,16 +528,25 @@ const HomePage = () => {
         return [result];
     };
 
+    /*
+        Nav menu icon useState to show correct icon in different cases
+        menu closed show: 'chevron-down'
+        menu open show: 'chevron-up')
+    */
+    let [navBtnValue, setNavBtnValue] = useState("false");
+
     // When nav menu button clicked run this
     const scrollToPageStart = () => {
         let btn = document.getElementById("navbarMenuButton");
         let btnValue = btn?.getAttribute("aria-expanded");
 
         if(btnValue === "true"){
+            setNavBtnValue(btnValue);
             window.scrollTo(0,0);
         }
         else if(btnValue === "false"){
             /*
+            // Unused feature
             // if profile data is open scroll to top after 0.5s delay
             if(window.scrollY !== 0){
                 setTimeout(() => {
@@ -379,6 +558,7 @@ const HomePage = () => {
                 return null;
             }
             */
+            setNavBtnValue(btnValue);
             return null;
         }
         else{
@@ -392,15 +572,51 @@ const HomePage = () => {
                 <div className="col-sm-12">
                     <nav className="navbar navbar-dark bg-dark fixed-top">
                         <div className="container-fluid">
-                            <button id="navbarMenuButton" className="navbar-toggler flex-grow-1 border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent_profile" aria-controls="navbarToggleExternalContent_profile" aria-expanded="false" aria-label="Toggle navigation" onClick={scrollToPageStart}>
+                            <button
+                                id="navbarMenuButton"
+                                className="navbar-toggler flex-grow-1 border-0 shadow-none"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#navbarToggleExternalContent_profile"
+                                aria-controls="navbarToggleExternalContent_profile"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                                onClick={scrollToPageStart}
+                            >
+                                {/*
+                                // Classic icon for nav menu
                                 <span className="navbar-toggler-icon"></span>
+                                */}
+                                <span>
+                                    { 
+                                    /*
+                                        Gets value from navBtnValue useState().
+                                        Value changes via setNavBtnValue() that is used in
+                                        this button onClick={scrollToPageStart} event.
+
+                                        Icons used are from Bootstrap 5 icons CDN
+                                    */
+                                    navBtnValue === "false" ?
+                                    <i className="bi bi-chevron-down"></i>
+                                    :
+                                    <i className="bi bi-chevron-up"></i>
+                                    }
+                                </span>
                             </button>
                         </div>
                     </nav>
                     <div className="collapse" id="navbarToggleExternalContent_profile">
                         <div className="p-4 pushElementDown">
-                            <h5 className="h4">Collapsed content</h5>
-                            <span className="text-muted">Toggleable via the navbar brand.</span>
+                            <div className="row justify-content-center">
+                                <div className="col-sm-3 text-center">
+                                    <img src={img_URL} className="img-fluid" alt="Owner of this portfolio."/>
+                                </div>
+                                <div className="col-sm-7 p-4">
+                                    { profileItems.length > 0 &&
+                                        displayProfileItems(profileItems)
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -415,6 +631,20 @@ const HomePage = () => {
                 { projects.length > 0 &&
                     displayProjects(projects)
                 }
+            </div>
+            <div className="row">
+                <div className="col-sm-12 text-center homePageFooter">
+                    {/*
+                    // Bootstrap 5 icons 
+                    <p>
+                        <i className="bi bi-c-circle"></i> <b>2024 Petteri Mikkonen</b>
+                    </p>
+                    */}
+                    {/* 
+                    // With selected font (Google Fonts) 
+                    */}
+                    <p>&copy; 2024 Petteri Mikkonen</p>
+                </div>
             </div>
         </div>
     );

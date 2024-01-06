@@ -1,3 +1,7 @@
+body {
+    font-family: "Open Sans", Arial, sans-serif !important;
+}
+
 .pushElementDown {
     margin-top: 10vh !important;
 }
@@ -6,6 +10,10 @@
     width: 100% !important;
     height: 25vw !important;
     object-fit: cover !important;
+}
+
+.homePageFooter {
+    padding: 5vh !important;
 }
 
 /*
