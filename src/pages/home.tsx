@@ -4,7 +4,18 @@ import CustomProfileInfo from "../components/profileItemComponent";
 
 import "../styles/custom-styles.css";
 
+// Placeholder and test image for projects
 const img_URL = process.env.PUBLIC_URL + "/img/cat_illustration.png";
+
+// Profile picture of me
+const profilePicture_URL = process.env.PUBLIC_URL + "/img/profilePicture.JPG";
+
+// ProfileItem interface
+interface ProfileItem {
+    id : string;
+    title : string;
+    content : ReactElement;
+};
 
 // Project interface
 interface Project {
@@ -19,13 +30,6 @@ interface Project {
     projectGitHubRepository : string,
     projectLink : string;
     colValue : string;
-};
-
-// ProfileItem interface
-interface ProfileItem {
-    id : string;
-    title : string;
-    content : ReactElement;
 };
 
 const HomePage = () => {
@@ -74,7 +78,7 @@ const HomePage = () => {
                         </p>
                         <hr/>
                         <p style={{fontSize: 16,}}>
-                            Harrastuksiini kuuluu rullalautailu, frisbeegolf ja videopelit.
+                            Harrastuksiini kuuluu rullalautailu, frisbeegolf ja videopelien pelaaminen.
                         </p>
                     </div>
                     <div className="col-sm-4 bg-dark text-white p-4">
@@ -102,15 +106,13 @@ const HomePage = () => {
             "title" : "Opinnot",
             "content" : (
                 <>
-                {/*
-                <span>
-                    Super
-                    <br/>
-                    long
-                    <br/>
-                    text... Opinnot
-                </span>
-                */}
+                <div className="row">
+                    <div className="col-sm-12 bg-dark text-white p-4 text-center">
+                        <p style={{fontSize: 30,}}>
+                            Valmistunut Tietojenkäsittelyn tradenomiksi Kaakkois-Suomen Ammattikorkeakoulu XAMK vuonna 2019.
+                        </p>
+                    </div>
+                </div>
                 </>
             ),
         },
@@ -119,15 +121,32 @@ const HomePage = () => {
             "title" : "Taidot",
             "content" : (
                 <>
-                {/*
-                <span>
-                    Super
-                    <br/>
-                    long
-                    <br/>
-                    text... Taidot
-                </span>
-                */}
+                <div className="row">
+                    <div className="col-sm-12 bg-dark text-white p-4 text-center">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <p style={{fontSize: 20,}}>
+                                    Ohjelmointi (kielet, frameworkit yms.)
+                                </p>
+                                <hr/>
+                            </div>
+                            {/*
+                                Here comes the code stuff...
+                            */}
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <p style={{fontSize: 20,}}>
+                                    Muut ohjelmat
+                                </p>
+                                <hr/>
+                            </div>
+                            {/*
+                                This is same as above but with adobe shit etc...
+                            */}
+                        </div>
+                    </div>
+                </div>
                 </>
             ),
         },
@@ -531,7 +550,7 @@ const HomePage = () => {
     /*
         Nav menu icon useState to show correct icon in different cases
         menu closed show: 'chevron-down'
-        menu open show: 'chevron-up')
+        menu open show: 'chevron-up'
     */
     let [navBtnValue, setNavBtnValue] = useState("false");
 
@@ -608,8 +627,8 @@ const HomePage = () => {
                     <div className="collapse" id="navbarToggleExternalContent_profile">
                         <div className="p-4 pushElementDown">
                             <div className="row justify-content-center">
-                                <div className="col-sm-3 text-center">
-                                    <img src={img_URL} className="img-fluid" alt="Owner of this portfolio."/>
+                                <div className="col-sm-3 p-4 text-center">
+                                    <img src={profilePicture_URL} className="img-fluid profilePicture" alt="Owner of this portfolio."/>
                                 </div>
                                 <div className="col-sm-7 p-4">
                                     { profileItems.length > 0 &&
@@ -643,7 +662,9 @@ const HomePage = () => {
                     {/* 
                     // With selected font (Google Fonts) 
                     */}
-                    <p>&copy; 2024 Petteri Mikkonen</p>
+                    <p style={{fontSize: 18,}}>
+                        &copy; 2024 Petteri Mikkonen
+                    </p>
                 </div>
             </div>
         </div>

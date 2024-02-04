@@ -12,6 +12,10 @@ body {
     object-fit: cover !important;
 }
 
+.profilePicture {
+    border-radius: 50% !important;
+}
+
 .homePageFooter {
     padding: 5vh !important;
 }
