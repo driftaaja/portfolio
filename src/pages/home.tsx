@@ -60,7 +60,7 @@ const HomePage = () => {
                 <>
                 <div className="row">
                     <div className="col-sm-4 bg-dark text-white p-4 text-center">
-                        <p style={{fontSize: 30,}}>
+                        <p style={{fontSize: 26,}}>
                             Minä olen
                             <br/>
                             Petteri Mikkonen
@@ -108,7 +108,7 @@ const HomePage = () => {
                 <>
                 <div className="row">
                     <div className="col-sm-12 bg-dark text-white p-4 text-center">
-                        <p style={{fontSize: 30,}}>
+                        <p style={{fontSize: 26,}}>
                             Valmistunut Tietojenkäsittelyn tradenomiksi Kaakkois-Suomen Ammattikorkeakoulu XAMK vuonna 2019.
                         </p>
                     </div>
@@ -133,6 +133,70 @@ const HomePage = () => {
                             {/*
                                 Here comes the code stuff...
                             */}
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    HTML
+                                </p>
+                                <p>
+                                    5/5
+                                </p>
+                            </div>
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    CSS
+                                </p>
+                                <p>
+                                    4/5
+                                </p>
+                            </div>
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    JS
+                                </p>
+                                <p>
+                                    5/5
+                                </p>
+                            </div>
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    TS
+                                </p>
+                                <p>
+                                    3.5/5
+                                </p>
+                            </div>
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    Java
+                                </p>
+                                <p>
+                                    2/5
+                                </p>
+                            </div>
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    C#
+                                </p>
+                                <p>
+                                    2/5
+                                </p>
+                            </div>
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    PHP
+                                </p>
+                                <p>
+                                    1/5
+                                </p>
+                            </div>
+                            <div className="col-sm-3 p-4">
+                                <p style={{fontSize: 16,}}>
+                                    Node.js
+                                </p>
+                                <p>
+                                    4/5
+                                </p>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-sm-12">
@@ -628,7 +692,7 @@ const HomePage = () => {
                         <div className="p-4 pushElementDown">
                             <div className="row justify-content-center">
                                 <div className="col-sm-3 p-4 text-center">
-                                    <img src={profilePicture_URL} className="img-fluid profilePicture" alt="Owner of this portfolio."/>
+                                    <img src={profilePicture_URL} className="img-fluid border border-light border-1 profilePicture" alt="Owner of this portfolio."/>
                                 </div>
                                 <div className="col-sm-7 p-4">
                                     { profileItems.length > 0 &&
